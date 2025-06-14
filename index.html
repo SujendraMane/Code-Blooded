@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Welcome to Digi Health</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background:linear-gradient(to right, #71a6ac, #dbc2c2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      text-align: center;
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 90%;
+    }
+
+    h1 {
+      color: #0077b6;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #333;
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+    }
+
+    button {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      background-color: #0077b6;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #005f8e;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to Digi Health</h1>
+    <p>Manage medical history securely and <br>get Digital Health Card..</p>
+    <button onclick="goToLogin()">Login</button>
+    <button onclick="goToSignup()">Signup</button>
+  </div>
+
+  <script>
+    function goToLogin() {
+      window.location.href = "login.html";
+    }
+
+    function goToSignup() {
+      window.location.href = "signup.html";
+    }
+  </script>
+</body>
+</html>

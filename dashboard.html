@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Welcome - Health Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #71a6ac, #dbc2c2);
+            background-size: cover;
+            margin: 0;
+            padding: 50px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 60px;
+            max-width: 1000px;
+            margin: auto;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 40px;
+        }
+
+        .cards {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background-color: #e2edf7;
+            padding: 30px;
+            border-radius: 15px;
+            width: 280px;
+            margin: 10px;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            background-color: #d0eaff;
+        }
+
+        .card-title {
+            font-weight: bold;
+            font-size: 18px;
+            color: #174ea6;
+            margin-bottom: 10px;
+        }
+
+        .card-text {
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Welcome</h1>
+        <div class="cards">
+            <div class="card" onclick="location.href='health-card.html'">
+                <div class="card-title">Health Card Creation</div>
+                <div class="card-text">Create and update your digital health card.</div>
+            </div>
+            <div class="card" onclick="location.href='medicalhistory.html'">
+                <div class="card-title">Medical History</div>
+                <div class="card-text">View and manage your medical records.</div>
+            </div>
+            <div class="card" onclick="location.href='health-card-output.html'">
+                <div class="card-title">Health Card Output</div>
+                <div class="card-text">Download or print your health card.</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('medicalHistoryBlock').addEventListener('click', function () {
+            window.location.href = 'medicalhistory.html';
+        });
+    </script>
+</body>
+
+</html>

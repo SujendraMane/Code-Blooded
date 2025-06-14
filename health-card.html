@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Health Card Creation</title>
+  <style>
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, #71a6ac, #dbc2c2);
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: relative;
+  }
+
+  .bubble {
+    position: absolute;
+    bottom: -100px;
+    background: rgba(197, 173, 173, 0.1);
+    border-radius: 50%;
+    animation: float 20s infinite ease-in;
+    pointer-events: none;
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0) scale(1);
+      opacity: 0.3;
+    }
+    50% {
+      opacity: 0.6;
+    }
+    100% {
+      transform: translateY(-120vh) scale(1.3);
+      opacity: 0;
+    }
+  }
+
+  /* Multiple bubbles with random sizes and delays */
+  .bubble:nth-child(1) { left: 10%; width: 40px; height: 40px; animation-delay: 0s; }
+  .bubble:nth-child(2) { left: 20%; width: 25px; height: 25px; animation-delay: 2s; }
+  .bubble:nth-child(3) { left: 35%; width: 60px; height: 60px; animation-delay: 2s; }
+  .bubble:nth-child(4) { left: 50%; width: 30px; height: 30px; animation-delay: 1s; }
+  .bubble:nth-child(5) { left: 65%; width: 20px; height: 20px; animation-delay: 2s; }
+  .bubble:nth-child(6) { left: 80%; width: 45px; height: 45px; animation-delay: 5s; }
+  .bubble:nth-child(7) { left: 90%; width: 35px; height: 35px; animation-delay: 0.5s; }
+
+  .form-container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 500px;
+    z-index: 1;
+  }
+
+  .form-container h2 {
+    text-align: center;
+    color: #004aad;
+    margin-bottom: 30px;
+  }
+
+  label {
+    display: block;
+    margin: 12px 0 6px;
+    font-weight: 500;
+    color: #333;
+  }
+
+  input[type="text"],
+  input[type="date"],
+  select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: border 0.3s ease;
+  }
+
+  input:focus,
+  select:focus {
+    border-color: #4889de;
+    outline: none;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #7b85e0;
+    color: #fff;
+    font-size: 1rem;
+    border: none;
+    border-radius: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  button[type="submit"]:hover {
+    background-color: #8b9ebe;
+  }
+</style>
+
+</head>
+<body>
+  <div class="form-container">
+    <h2>Enter Health Card Information</h2>
+    <form id="healthForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" required />
+
+      <label for="dob">DOB:</label>
+      <input type="date" id="dob" required />
+
+      <label for="gender">Gender:</label>
+      <select id="gender" required>
+        <option value="">Select Gender</option>
+        <option value="MALE">MALE</option>
+        <option value="FEMALE">FEMALE</option>
+        <option value="OTHER">OTHER</option>
+      </select>
+
+      <label for="bloodGroup">Blood Group:</label>
+      <select id="bloodGroup" required>
+        <option value="">Select Blood Group</option>
+        <option value="A+">A+</option>
+        <option value="A-">A-</option>
+        <option value="B+">B+</option>
+        <option value="B-">B-</option>
+        <option value="O+">O+</option>
+        <option value="O-">O-</option>
+        <option value="AB">AB</option>
+      </select>
+
+      <label for="allergies">Allergies:</label>
+      <input type="text" id="allergies" required />
+
+      <label for="contact">Contact:</label>
+      <input type="text" id="contact" required />
+
+      <label for="address">Address:</label>
+      <input type="text" id="address" required />
+
+      <label for="conditions">Conditions:</label>
+      <input type="text" id="conditions" required />
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("healthForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const data = {
+        name: document.getElementById("name").value,
+        dob: document.getElementById("dob").value,
+        gender: document.getElementById("gender").value,
+        bloodGroup: document.getElementById("bloodGroup").value,
+        allergies: document.getElementById("allergies").value,
+        contact: document.getElementById("contact").value,
+        address: document.getElementById("address").value,
+        conditions: document.getElementById("conditions").value
+      };
+
+      localStorage.setItem("healthCardData", JSON.stringify(data));
+      alert("Health Card successfully created!");
+      window.location.href = "dashboard.html";
+    });
+  </script>
+  <!-- Animated Bubbles -->
+<div class="bubble"></div>
+<div class="bubble"></div>
+<div class="bubble"></div>
+<div class="bubble"></div>
+<div class="bubble"></div>
+<div class="bubble"></div>
+<div class="bubble"></div>
+
+</body>
+</html>

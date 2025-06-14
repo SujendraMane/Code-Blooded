@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Patient History</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+  <!-- jsPDF for PDF generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to bottom right, #e6f0ff, #ffffff);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .home-container {
+      background-color: #ffffff;
+      padding: 30px 35px;
+      border-radius: 15px;
+      max-width: 600px;
+      width: 100%;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .home-container h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #004aad;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input, textarea {
+      padding: 12px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      width: 100%;
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    button {
+      padding: 12px;
+      background-color: #004aad;
+      color: white;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #003080;
+    }
+
+    @media screen and (max-width: 600px) {
+      .home-container {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="home-container">
+    <h2>Patient History</h2>
+    <form id="medicalHistoryForm">
+      <label for="Visit Date">Visit Date:</label>
+      <input type="date" id="visitDate" required />
+
+      <label for="Symptoms">Symptoms</label>
+      <input type="text" id="symptoms" required />
+
+      <label for="Diagnosis">Diagnosis</label>
+      <input type="text" id="diagnosis" required />
+
+      <label for="Prescription">Prescription</label>
+      <textarea name="prescription" rows="5"></textarea>
+      <button type="submit">Save & Download PDF</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("medicalHistoryForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const visitDate = document.getElementById("visitDate").value.trim();
+      const symptoms = document.getElementById("symptoms").value.trim();
+      const diagnosis = document.getElementById("diagnosis").value.trim();
+      const prescription = document.getElementById("prescription").value.trim();
+
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      doc.setFontSize(16);
+      doc.text("Patient Visit History", 20, 20);
+      doc.setFontSize(12);
+      doc.text(`Visit Date: ${visitDate}`, 20, 40);
+      doc.text(`Symptoms: ${symptoms}`, 20, 50);
+      doc.text(`Diagnosis: ${diagnosis}`, 20, 60);
+      doc.text("Prescription:", 20, 70);
+      doc.text(prescription, 20, 80, { maxWidth: 170 });
+
+      doc.save(`Patient_History_${visitDate.replace(/[^0-9\-]/g, '_')}.pdf`);
+    });
+  </script>
+</body>
+</html>
